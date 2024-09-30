@@ -1,8 +1,7 @@
 
 class Arquivo:
-  quadros = 0
+  quadros = None
   processos = []
-
 
   def lerArquivo(self, nomeArq):
     try:
@@ -19,14 +18,12 @@ class Arquivo:
   def extrairProcessos(self, linhas):
 
     for linha in linhas:
-      
       aux = linha.strip()
-      self.processos.append((int(aux)))
+      self.processos.append((aux))
       #print(aux)
-    self.quadros = self.processos[0]
+    self.quadros = (self.processos[0])
+    #print(self.quadros)
     self.processos.remove(self.processos[0])
-
-      
 
 
 arq = Arquivo()
