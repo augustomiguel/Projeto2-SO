@@ -1,7 +1,6 @@
-from processo import Processo
-
 
 class Arquivo:
+  quadros = 0
   processos = []
 
 
@@ -19,15 +18,16 @@ class Arquivo:
 
   def extrairProcessos(self, linhas):
 
-    idProcesso = 0
     for linha in linhas:
       
-      tempo_chegada, duracao = linha.strip().split()
-      self.processos.append(Processo(int(idProcesso), int(tempo_chegada),int(duracao)))
-      idProcesso += 1 
-      #print("id {0} chegada {1} duração {2}".format(idProcesso, tempo_chegada, duracao))
+      aux = linha.strip()
+      self.processos.append((int(aux)))
+      #print(aux)
+    self.quadros = self.processos[0]
+    self.processos.remove(self.processos[0])
+
       
 
 
-#arq = Arquivo()
-#arq.lerArquivo("processos.txt")
+arq = Arquivo()
+arq.lerArquivo("processos.txt")
