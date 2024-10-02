@@ -21,7 +21,7 @@ class FIFO:
             if processoAtual not in self.lista:
                 #print("não estou na lista")
                 self.porNaLista(processoAtual)
-        self.faltaDeQuadros += 4 
+        self.faltaDeQuadros += self.quadros
     
 
         
@@ -38,17 +38,15 @@ class FIFO:
                 
                 self.lista[self.primeiroInserido] = processoAtual
                 self.faltaDeQuadros += 1 
-                self.primeiroInserido += 1
-                print("falta de quadros",self.faltaDeQuadros)
-                
+                self.primeiroInserido += 1                
             else:
                 self.primeiroInserido = 0
                 self.lista[self.primeiroInserido] = processoAtual  
                 self.faltaDeQuadros += 1 
-                print("falta de quadros tres ",self.faltaDeQuadros)
+                
         
 
-#
+
        
             
                 
@@ -58,5 +56,5 @@ arq = Arquivo()
 arq.lerArquivo("processos.txt")       
 fi=FIFO()
 fi.fifo(arq)
-#print("falta de quadros",fi.faltaDeQuadros) 
+print("falta de quadros",fi.faltaDeQuadros) 
 #print(fi.faltaDeQuadros)

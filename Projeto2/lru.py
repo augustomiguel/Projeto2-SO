@@ -1,27 +1,26 @@
 #Least Recently Used ou Menos Recentemente Utilizado
 from arquivo import Arquivo
-# First In, First Out
-from arquivo import Arquivo
 
 class LRU:
     quadros = 0
     processos = []
+    processosCopia = []
     faltaDeQuadros = 0
     primeiroInserido = 0
     lista = []
+    indice = -1
 
-    def lru(self):
-        self.quadros = 4 #/obj.quadros
-        self.processos = [1,2,3,4,1,2,5,1,2,3,4,5]
+    def lru(self, arq):
+        self.quadros = arq.quadros
+        self.processos = arq.processos
+        self.processosCopia = arq.processos
         self.lista = [None]*self.quadros
         
         while self.processos:
             processoAtual = self.processos[0]
             self.processos.remove(processoAtual)
-            
-            #if processoAtual in self.lista :   
+        
             if processoAtual not in self.lista:
-                #print("não estou na lista")
                 self.porNaLista(processoAtual)
                 
                       
@@ -33,6 +32,7 @@ class LRU:
             for j in range(len(self.lista)):
                 if self.lista[j] == None:
                     self.lista[j] = processoAtual
+                    self.indice += 1 
                     break
         else:
             
@@ -47,12 +47,25 @@ class LRU:
                 self.primeiroInserido = 0
                 self.lista[self.primeiroInserido] = processoAtual  
                 self.faltaDeQuadros += 1 
-                print("falta de quadros tres ",self.faltaDeQuadros)
-        
-
-#
-       
+                print("falta de quadros tres ",self.faltaDeQuadros) 
             
+    def buscarIndice(self, processoAtual ):
+        i = self.indice
+        j = 0
+        k = 0
+        vetor[]
+        while i != -1: #and j <= self.quadros :
+            #if self.lista[j] == self.processosCopia[i]:
+            for j in range(self.quadros)
+                if self.processosCopia[i] == self.lista[j]
+                    vetor.append(j)
+            j += 1
+            
+            
+
+            i -= 1 
+            
+        
                 
                         
                 
