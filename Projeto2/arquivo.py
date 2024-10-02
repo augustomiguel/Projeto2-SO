@@ -20,9 +20,9 @@ class Arquivo:
     for linha in linhas:
       aux = linha.strip()
       self.processos.append(int(aux))
-      #print(aux)
+      #print("aux",aux)
     self.quadros = (self.processos[0])
-    #print(self.quadros)
+    #print("quadros",self.quadros)
     self.processos.remove(self.processos[0])
 
 
