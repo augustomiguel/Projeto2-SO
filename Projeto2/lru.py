@@ -14,7 +14,7 @@ class LRU:
         self.quadros = arq.quadros
         self.processos = arq.processos
         self.processosCopia = arq.processos[:]
-        #print(self.processosCopia)
+        print(self.processosCopia)
         self.lista = [None]*self.quadros
         
         while self.processos:
@@ -26,7 +26,7 @@ class LRU:
                 #print("Indice estar na lista", self.indice)
             else :
                 self.porNaLista(processoAtual)
-            print("lista", self.lista)
+                print("lista", self.lista)
         #self.faltaDeQuadros += self.quadros
         
     def porNaLista(self,processoAtual):
@@ -55,18 +55,25 @@ class LRU:
             for j in range(len(self.lista) - 1 ):
                
                 if self.processosCopia[i] == self.lista[j]:
-                    vetor.append(j)
+                    if j not in vetor :
+                        vetor.append(j)
                     break
-                    
-                j += 1                            
+                j += 1
+            print("                           j =", j ) 
+                                            
                 
             i -= 1 
         self.inserir(vetor, processoAtual) 
 
 
     def inserir(self, vetor , processoAtual):
-        self.lista[len(vetor)-1] = processoAtual
+        localInsercao = vetor[len(vetor) - 1 ]
+        self.lista[localInsercao] = processoAtual
         self.faltaDeQuadros += 1
+        print("                     local inserção =", localInsercao)
+        print("                     vetor =",vetor)
+        print("                     processo atual =", processoAtual)
+        print("                     falta de quadros =",self.faltaDeQuadros)
         
 
         
