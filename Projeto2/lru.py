@@ -25,6 +25,7 @@ class LRU:
                 self.indice += 1
             else :
                 self.porNaLista(processoAtual)
+            print("lista", self.lista)
 
     def porNaLista(self,processoAtual):
         
