@@ -23,10 +23,12 @@ class LRU:
         
             if processoAtual in self.lista:
                 self.indice += 1
+                #print("Indice estar na lista", self.indice)
             else :
                 self.porNaLista(processoAtual)
             print("lista", self.lista)
-
+        #self.faltaDeQuadros += self.quadros
+        
     def porNaLista(self,processoAtual):
         
         if None in self.lista :
@@ -36,7 +38,8 @@ class LRU:
                     self.indice += 1 
                     break
         else:
-            self.buscarIndice(processoAtual)                
+            self.buscarIndice(processoAtual)   
+            self.indice += 1             
             
     def buscarIndice(self, processoAtual ):
         i = self.indice
@@ -64,6 +67,7 @@ class LRU:
     def inserir(self, vetor , processoAtual):
         self.lista[len(vetor)-1] = processoAtual
         self.faltaDeQuadros += 1
+        
 
         
 
