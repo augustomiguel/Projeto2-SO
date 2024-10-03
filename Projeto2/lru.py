@@ -13,8 +13,8 @@ class LRU:
     def lru(self, arq):
         self.quadros = arq.quadros
         self.processos = arq.processos
-        self.processosCopia = arq.processos
-        print(self.processosCopia)
+        self.processosCopia = arq.processos[:]
+        #print(self.processosCopia)
         self.lista = [None]*self.quadros
         
         while self.processos:
@@ -41,8 +41,8 @@ class LRU:
         i = self.indice
         j = 0
         vetor = []
-        print(self.processosCopia)
-        """
+        #print(self.processosCopia)
+        
         while i > -1: #and j <= self.quadros :
 
             if len(vetor) == len(self.lista):
@@ -53,11 +53,11 @@ class LRU:
                 if self.processosCopia[i] == self.lista[j]:
                     vetor.append(j)
                     break
-                
+                    
                 j += 1                            
                 
             i -= 1 
-        self.inserir(vetor, processoAtual) """
+        self.inserir(vetor, processoAtual) 
 
 
     def inserir(self, vetor , processoAtual):
@@ -65,14 +65,9 @@ class LRU:
         self.faltaDeQuadros += 1
 
         
-            
-        
-                
-                        
-                
+
 arq = Arquivo()
 arq.lerArquivo("processos.txt")       
 fi=LRU()
 fi.lru(arq)
-#print("falta de quadros",fi.faltaDeQuadros) 
-#print(fi.faltaDeQuadros)
+print("falta de quadros",fi.faltaDeQuadros) 
