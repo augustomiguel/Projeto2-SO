@@ -20,7 +20,7 @@ class LRU:
 
         # Percorre a lista de paginas referenciadas
         for ref in referencias:
-            if ref not in quadros.keys():
+            if ref not in list(quadros.keys()):
                 miss += 1 # incrementa o numero de paginas faltantes
 
                 # Se todos os quadros estiverem ocupados remove a pagina usada a mais tempo
@@ -43,11 +43,11 @@ class LRU:
         """
 
         # Considera inicialmente a primeira a mais antiga
-        mais_antiga = quadros.keys()[0]
-        menor_instante = quadros.values()[0]
+        mais_antiga = list(quadros.keys())[0]
+        menor_instante = list(quadros.values())[0]
 
         # Compara os instantes da ultima utilizacao de cada pagina
-        for chave in quadros.keys():
+        for chave in list(quadros.keys()):
             # Se chave for menor que a chame da mais antiga ate o momento
             # a mais antiga e atualizada
             if quadros[chave] < menor_instante:
@@ -58,4 +58,5 @@ class LRU:
         return mais_antiga
 
 lru = LRU()
-lru.execute(4 ,[1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5] )
+a = lru.execute(4 ,[1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5] )
+print(a)
