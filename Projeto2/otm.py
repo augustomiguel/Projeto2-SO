@@ -44,7 +44,7 @@ class OTM:
         j = 0
         vetor = []
    
-        while i > -1: 
+        while i < len(self.processosCopia): 
 
             for j in range(len(self.lista)): #tirei o -1
                
@@ -55,15 +55,16 @@ class OTM:
                 j += 1
                                         
                 
-            i -= 1 
+            i += 1 
             
         self.inserir(vetor, processoAtual) 
 
 
     def inserir(self, vetor, processoAtual):
-        localInsercao = vetor[len(vetor) - 1 ]
+        localInsercao = vetor[0]
         self.lista[localInsercao] = processoAtual
         #print("inserção = ", self.lista)
+        
         self.faltaDeQuadros += 1
         self.indice += 1 #faltava somar o indice aqui 
         

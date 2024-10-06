@@ -26,6 +26,8 @@ class LRU:
                 self.porNaLista(processoAtual)
                 
         self.faltaDeQuadros += self.quadros
+        print("falta de quadros lru", self.faltaDeQuadros)
+        return print("terminei lru")
         
     def porNaLista(self,processoAtual):
         
