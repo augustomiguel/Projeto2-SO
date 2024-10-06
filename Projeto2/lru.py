@@ -14,7 +14,6 @@ class LRU:
         self.quadros = arq.quadros
         self.processos = arq.processos
         self.processosCopia = arq.processos[:]
-        print(self.processosCopia)
         self.lista = [None]*self.quadros
         
         while self.processos:
@@ -23,11 +22,10 @@ class LRU:
         
             if processoAtual in self.lista:
                 self.indice += 1
-                #print("Indice estar na lista", self.indice)
             else :
                 self.porNaLista(processoAtual)
-                print("lista", self.lista)
-        #self.faltaDeQuadros += self.quadros
+                
+        self.faltaDeQuadros += self.quadros
         
     def porNaLista(self,processoAtual):
         
@@ -38,48 +36,41 @@ class LRU:
                     self.indice += 1 
                     break
         else:
-            self.buscarIndice(processoAtual)   
-            self.indice += 1             
+            self.buscarIndice(processoAtual)            
             
     def buscarIndice(self, processoAtual ):
         i = self.indice
         j = 0
         vetor = []
-        #print(self.processosCopia)
-        
-        while i > -1: #and j <= self.quadros :
+   
+        while i > -1: 
 
-            if len(vetor) == len(self.lista):
-                break
-
-            for j in range(len(self.lista) - 1 ):
+            for j in range(len(self.lista)): #tirei o -1
                
                 if self.processosCopia[i] == self.lista[j]:
-                    if j not in vetor :
+                    if j not in vetor:
                         vetor.append(j)
-                    break
+                        break
                 j += 1
-            print("                           j =", j ) 
-                                            
+                                        
                 
             i -= 1 
+            
         self.inserir(vetor, processoAtual) 
 
 
-    def inserir(self, vetor , processoAtual):
+    def inserir(self, vetor, processoAtual):
         localInsercao = vetor[len(vetor) - 1 ]
         self.lista[localInsercao] = processoAtual
+        #print("inserção = ", self.lista)
         self.faltaDeQuadros += 1
-        print("                     local inserção =", localInsercao)
-        print("                     vetor =",vetor)
-        print("                     processo atual =", processoAtual)
-        print("                     falta de quadros =",self.faltaDeQuadros)
+        self.indice += 1 #faltava somar o indice aqui 
         
 
         
 
-arq = Arquivo()
-arq.lerArquivo("processos.txt")       
-fi=LRU()
-fi.lru(arq)
-print("falta de quadros",fi.faltaDeQuadros) 
+#arq = Arquivo()
+#arq.lerArquivo("processos.txt")       
+#fi=LRU()
+#fi.lru(arq)
+#print("falta de quadros",fi.faltaDeQuadros) 

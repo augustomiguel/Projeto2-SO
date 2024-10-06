@@ -1,31 +1,32 @@
 # Algoritmo Ótimo
-
-# First In, First Out
+#Least Recently Used ou Menos Recentemente Utilizado
 from arquivo import Arquivo
 
 class OTM:
     quadros = 0
     processos = []
+    processosCopia = []
     faltaDeQuadros = 0
     primeiroInserido = 0
     lista = []
+    indice = -1
 
-    def otimo(self):
-        self.quadros = 4 #/obj.quadros
-        self.processos = [1,2,3,4,1,2,5,1,2,3,4,5]
+    def otm(self, arq):
+        self.quadros = arq.quadros
+        self.processos = arq.processos
+        self.processosCopia = arq.processos[:]
         self.lista = [None]*self.quadros
         
         while self.processos:
             processoAtual = self.processos[0]
             self.processos.remove(processoAtual)
-            
-            #if processoAtual in self.lista :   
-            if processoAtual not in self.lista:
-                #print("não estou na lista")
+        
+            if processoAtual in self.lista:
+                self.indice += 1
+            else :
                 self.porNaLista(processoAtual)
                 
-                      
-
+        self.faltaDeQuadros += self.quadros
         
     def porNaLista(self,processoAtual):
         
@@ -33,32 +34,44 @@ class OTM:
             for j in range(len(self.lista)):
                 if self.lista[j] == None:
                     self.lista[j] = processoAtual
+                    self.indice += 1 
                     break
         else:
+            self.buscarIndice(processoAtual)            
             
-            if self.primeiroInserido < self.quadros: 
+    def buscarIndice(self, processoAtual ):
+        i = self.indice
+        j = 0
+        vetor = []
+   
+        while i > -1: 
+
+            for j in range(len(self.lista)): #tirei o -1
+               
+                if self.processosCopia[i] == self.lista[j]:
+                    if j not in vetor:
+                        vetor.append(j)
+                        break
+                j += 1
+                                        
                 
-                self.lista[self.primeiroInserido] = processoAtual
-                self.faltaDeQuadros += 1 
-                self.primeiroInserido += 1
-                print("falta de quadros",self.faltaDeQuadros)
-                
-            else:
-                self.primeiroInserido = 0
-                self.lista[self.primeiroInserido] = processoAtual  
-                self.faltaDeQuadros += 1 
-                print("falta de quadros tres ",self.faltaDeQuadros)
+            i -= 1 
+            
+        self.inserir(vetor, processoAtual) 
+
+
+    def inserir(self, vetor, processoAtual):
+        localInsercao = vetor[len(vetor) - 1 ]
+        self.lista[localInsercao] = processoAtual
+        #print("inserção = ", self.lista)
+        self.faltaDeQuadros += 1
+        self.indice += 1 #faltava somar o indice aqui 
         
 
-#
-       
-            
-                
-                        
-                
-#arq = Arquivo()
-#arq.extrairProcessos("processos.txt")       
+        
+
+arq = Arquivo()
+arq.lerArquivo("processos.txt")       
 fi=OTM()
-fi.otimo()
-#print("falta de quadros",fi.faltaDeQuadros) 
-#print(fi.faltaDeQuadros)
+fi.otm(arq)
+print("falta de quadros",fi.faltaDeQuadros) 
