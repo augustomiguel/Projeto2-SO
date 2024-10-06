@@ -59,9 +59,10 @@ class OTM:
             
         self.inserir(vetor, processoAtual) 
 
-
     def inserir(self, vetor, processoAtual):
-        localInsercao = vetor[0]
+        localInsercao = vetor[len(vetor) - 1 ]
+        # print("vetor = ",vetor)
+        # print("local de inserção = ", localInsercao)
         self.lista[localInsercao] = processoAtual
         #print("inserção = ", self.lista)
         
@@ -75,4 +76,23 @@ arq = Arquivo()
 arq.lerArquivo("processos.txt")       
 fi=OTM()
 fi.otm(arq)
-print("falta de quadros",fi.faltaDeQuadros) 
+print("falta de quadros1 =",fi.faltaDeQuadros) 
+
+arq2 = Arquivo()
+arq2.lerArquivo("processos2.txt")       
+fi=OTM()
+fi.otm(arq2)
+print("falta de quadros2 =",fi.faltaDeQuadros) 
+
+arq3 = Arquivo()
+arq3.lerArquivo("processos3.txt")       
+fi=OTM()
+fi.otm(arq3)
+print("falta de quadros3 =",fi.faltaDeQuadros) 
+
+
+arq4 = Arquivo()
+arq4.lerArquivo("processos4.txt")       
+fi=OTM()
+fi.otm(arq4)
+print("falta de quadros4 =",fi.faltaDeQuadros) 

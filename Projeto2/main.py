@@ -1,4 +1,5 @@
 from arquivo import Arquivo
+
 from fifo import FIFO
 from lru import LRU
 from otm import OTM
@@ -10,14 +11,15 @@ def main ():
     fifo = FIFO()
     fifo.fifo(arq)
     lru = LRU()
-    lru.lru(arq)
+    #lru.lru(arq)
 
     otm = OTM() 
     otm.otm(arq)
     print("Processos FIFO = {0}, LRU = {1}, OTM = {2} \n".format(fifo.faltaDeQuadros,
                                                                 lru.faltaDeQuadros,
                                                                 otm.faltaDeQuadros))
-    
+   
+    """  
     arq2 = Arquivo()
     arq2.lerArquivo("processos2.txt") 
     fifo2 = FIFO()
@@ -52,6 +54,6 @@ def main ():
     otm4.otm(arq)
     print("Processos4 FIFO = {0}, LRU = {1}, OTM = {2} \n".format(fifo4.faltaDeQuadros,
                                                                 lru4.faltaDeQuadros,
-                                                                otm4.faltaDeQuadros))
+                                                                otm4.faltaDeQuadros)) """
 
 main()
