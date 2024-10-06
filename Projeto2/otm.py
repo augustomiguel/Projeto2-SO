@@ -60,12 +60,12 @@ class OTM:
         self.inserir(vetor, processoAtual) 
 
     def inserir(self, vetor, processoAtual):
-        localInsercao = vetor[len(vetor) - 1 ]
-        # print("vetor = ",vetor)
-        # print("local de inserção = ", localInsercao)
-        self.lista[localInsercao] = processoAtual
-        #print("inserção = ", self.lista)
-        
+        if  len(vetor) == 0  : 
+            self.lista[0] = processoAtual
+        else:
+            localInsercao = vetor[len(vetor) - 1 ]
+            self.lista[localInsercao] = processoAtual        
+           
         self.faltaDeQuadros += 1
         self.indice += 1 #faltava somar o indice aqui 
         
