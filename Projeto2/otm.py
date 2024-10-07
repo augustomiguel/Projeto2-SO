@@ -1,5 +1,5 @@
 # Algoritmo Ótimo
-#Least Recently Used ou Menos Recentemente Utilizado
+
 from arquivo import Arquivo
 
 class OTM:
@@ -9,14 +9,14 @@ class OTM:
     faltaDeQuadros = 0
     primeiroInserido = 0
     lista = []
-    indice = -1
+    indice = 0
 
     def otm(self, arq):
         self.quadros = arq.quadros
         self.processos = arq.processos
         self.processosCopia = arq.processos[:]
         self.lista = [None]*self.quadros
-        
+
         while self.processos:
             processoAtual = self.processos[0]
             self.processos.remove(processoAtual)
@@ -40,10 +40,10 @@ class OTM:
             self.buscarIndice(processoAtual)            
             
     def buscarIndice(self, processoAtual ):
-        i = self.indice
+        i = self.indice + 1
         j = 0
         vetor = []
-   
+        
         while i < len(self.processosCopia): 
 
             for j in range(len(self.lista)): #tirei o -1
@@ -56,43 +56,47 @@ class OTM:
                                         
                 
             i += 1 
-            
+           
         self.inserir(vetor, processoAtual) 
 
+
     def inserir(self, vetor, processoAtual):
-        if  len(vetor) == 0  : 
+        
+        if len(vetor) < self.quadros:
+            i = 0
+            for i in range(self.quadros):
+                
+                if i not in vetor:
+                    localInsercao = i    
+                    break
+                
+            self.lista[localInsercao] = processoAtual
+            #print("inserção = ", self.lista)
+            self.faltaDeQuadros += 1
+            self.indice += 1  
+        
+        elif len(vetor) == 0:
+            
             self.lista[0] = processoAtual
+            #print("inserção = ", self.lista)
+            self.faltaDeQuadros += 1
+            
         else:
-            localInsercao = vetor[len(vetor) - 1 ]
-            self.lista[localInsercao] = processoAtual        
-           
-        self.faltaDeQuadros += 1
-        self.indice += 1 #faltava somar o indice aqui 
+
+            localInsercao = vetor[len(vetor) - 1]
+            self.lista[localInsercao] = processoAtual
+            #print("inserção = ", self.lista)
+            self.faltaDeQuadros += 1
+            self.indice += 1 
+            
+        
+            
         
 
         
 
-arq = Arquivo()
-arq.lerArquivo("processos.txt")       
-fi=OTM()
-fi.otm(arq)
-print("falta de quadros1 =",fi.faltaDeQuadros) 
-
-arq2 = Arquivo()
-arq2.lerArquivo("processos2.txt")       
-fi=OTM()
-fi.otm(arq2)
-print("falta de quadros2 =",fi.faltaDeQuadros) 
-
-arq3 = Arquivo()
-arq3.lerArquivo("processos3.txt")       
-fi=OTM()
-fi.otm(arq3)
-print("falta de quadros3 =",fi.faltaDeQuadros) 
-
-
-arq4 = Arquivo()
-arq4.lerArquivo("processos4.txt")       
-fi=OTM()
-fi.otm(arq4)
-print("falta de quadros4 =",fi.faltaDeQuadros) 
+# arq = Arquivo()
+# arq.lerArquivo("processos4.txt")       
+# fi=OTM()
+# fi.otm(arq)
+# print("falta de quadros",fi.faltaDeQuadros)

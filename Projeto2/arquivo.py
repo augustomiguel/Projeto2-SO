@@ -2,6 +2,11 @@
 class Arquivo:
   quadros = None
   processos = []
+  
+  def __init__(self):
+    
+    self.quadros = None
+    self.processos = []
 
   def lerArquivo(self, nomeArq):
     try:

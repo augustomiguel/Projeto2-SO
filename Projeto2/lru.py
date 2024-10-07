@@ -26,8 +26,6 @@ class LRU:
                 self.porNaLista(processoAtual)
                 
         self.faltaDeQuadros += self.quadros
-        #print("falta de quadros lru", self.faltaDeQuadros)
-        #return print("terminei lru")
         
     def porNaLista(self,processoAtual):
         
@@ -71,27 +69,8 @@ class LRU:
 
         
 
-arq = Arquivo()
-arq.lerArquivo("processos.txt")       
-fi=LRU()
-fi.lru(arq)
-print("falta de quadros1 =",fi.faltaDeQuadros) 
-
-arq2 = Arquivo()
-arq2.lerArquivo("processos2.txt")       
-fi=LRU()
-fi.lru(arq2)
-print("falta de quadros2 =",fi.faltaDeQuadros) 
-
-arq3 = Arquivo()
-arq3.lerArquivo("processos3.txt")       
-fi=LRU()
-fi.lru(arq3)
-print("falta de quadros3 =",fi.faltaDeQuadros) 
-
-
-arq4 = Arquivo()
-arq4.lerArquivo("processos4.txt")       
-fi=LRU()
-fi.lru(arq4)
-print("falta de quadros4 =",fi.faltaDeQuadros) 
+# arq = Arquivo()
+# arq.lerArquivo("processos4.txt")       
+# fi=LRU()
+# fi.lru(arq)
+# print("falta de quadros",fi.faltaDeQuadros) 
