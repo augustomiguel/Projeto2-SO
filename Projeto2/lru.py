@@ -15,6 +15,8 @@ class LRU:
         self.processos = arq.processos
         self.processosCopia = arq.processos[:]
         self.lista = [None]*self.quadros
+        qtdNones = 0
+        i = 0
         
         while self.processos:
             processoAtual = self.processos[0]
@@ -24,8 +26,11 @@ class LRU:
                 self.indice += 1
             else :
                 self.porNaLista(processoAtual)
+        for i in range(self.quadros):
+            if self.lista[i] == None:
+                qtdNones += 1        
                 
-        self.faltaDeQuadros += self.quadros
+        self.faltaDeQuadros += (self.quadros - qtdNones)
         
     def porNaLista(self,processoAtual):
         
